@@ -48,6 +48,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /docker/prowlarr:/config
+    ports:
+      - 9696:9696
     restart: unless-stopped
 
   flaresolverr:
