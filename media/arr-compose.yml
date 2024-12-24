@@ -3,7 +3,6 @@
 # All containers are ran with user and group ids of the main user and 
 # share to aviod permissions issues of downloaded files, please refer
 # the read me file for more information.
-version: '3.9'
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
