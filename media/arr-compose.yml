@@ -35,8 +35,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/nzbget:/config
       - /data:/data
-    port:
-      - 6789:6789
     restart: unless-stopped
 
   prowlarr:
