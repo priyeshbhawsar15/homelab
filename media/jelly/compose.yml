@@ -1,19 +1,19 @@
 services:
-  # jellyfin:
-  #   container_name: jellyfin
-  #   image: jellyfin/jellyfin
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=America/Los_Angeles
-  #   volumes:
-  #     - /docker/jellyfin:/config
-  #     - /data:/data
-  #   ports:
-  #     - 8096:8096
-  #   devices:
-  #    - /dev/dri:/dev/dri # QuickSync
-  #   restart: unless-stopped
+  jellyfin:
+    container_name: jellyfin
+    image: jellyfin/jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Calcutta
+    volumes:
+      - /docker/jellyfin:/config
+      - /data:/data
+    ports:
+      - 8096:8096
+    devices:
+     - /dev/dri:/dev/dri # QuickSync
+    restart: unless-stopped
 
   jellyseerr:
     container_name: jellyseerr
