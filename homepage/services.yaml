@@ -1,0 +1,327 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Media:
+    - Jellyfin Media Player:
+        icon: /images/catppuccin_icons/jellyfin.png
+        href: https://jellyfin.local.priyeshbhawsar.com
+        description: Jellyfin Media Player
+        # ping: jellyfin.priyeshbhawsar.com
+        # siteMonitor: https://jellyfin.priyeshbhawsar.com
+        # server: jellyfin
+        # container: jellyfin
+        widget:
+            type: jellyfin
+            url: http://192.168.1.200:8096
+            key: 61323a0e52f140f6ae41e01967102b58
+            enableBlocks: true # optional, defaults to false enableNowPlaying: true # optional, defaults to true
+            enableUser: true # optional, defaults to false
+            showEpisodeNumber: true # optional, defaults to false
+            expandOneStreamToTwoRows: true # optional, defaults to true
+    - Immich:
+        icon: /images/catppuccin_icons/immich.png
+        href: https://immich.local.priyeshbhawsar.com
+        description: Photos and Videos
+        # ping: immich.priyeshbhawsar.com
+        server: apps
+        container: immich_server
+        widget:
+            type: immich
+            url: http://192.168.1.201:2283
+            version: 2
+            key: UZR0qgWGacSBUB4w4DxWj2K9DkjaenyHnnxdJ7PM
+    - Jellyseer:
+        icon: /images/catppuccin_icons/jellyseerr.png
+        href: https://jellyseer.local.priyeshbhawsar.com
+        description: Movie and TV Show Requests
+        # ping: jellystat.priyeshbhawsar.com
+        server: apps
+        container: jellystat
+        widget:
+            type: jellyseerr
+            url: http://192.168.1.201:5055
+            key: MTczNTI3OTc3NTk3OTgyNTJmN2QxLWM5NTMtNDkzZS05MDI3LTBiNWRkMTkxN2E5NQ==
+    - Jellystat:
+        icon: /images/catppuccin_icons/jellystat.png
+        href: https://jellyseer.local.priyeshbhawsar.com
+        description: Jellyfin Stats
+        # ping: jellyseer.priyeshbhawsar.com
+        server: apps
+        container: jellyseerr
+- Infra:
+    - Proxmox:
+        icon: /images/catppuccin_icons/proxmox.png
+        href: https://proxmox.local.priyeshbhawsar.com
+        description: Proxmox GUI
+        # ping: proxmox.priyeshbhawsar.com
+        widget:
+            type: proxmox
+            url: https://192.168.1.69:8006
+            username: api@pam!homepage
+            password: 6e426503-2d2b-4c4e-937b-65413d43d2bd
+            node: pb # optional
+    - Portainer:
+        icon: /images/catppuccin_icons/portainer.svg
+        href: https://apps.local.priyeshbhawsar.com
+        # ping: apps.priyeshbhawsar.com
+        description: Portainer
+        server: apps
+        container: portainer
+        widget:
+            type: portainer
+            url: https://192.168.1.201:9443
+            env: 2
+            key: ptr_/6KE0kZ7QUzNbezTnVrUbPndbg/RzhtB3ejW7fNB9xg=
+    - Network Portainer:
+        icon: /images/catppuccin_icons/portainer.svg
+        href: https://portainernetwork.local.priyeshbhawsar.com/
+        # ping: apps.priyeshbhawsar.com
+        description: Portainer
+        server: network
+        container: portainer
+    - Adguard Home:
+        icon: /images/catppuccin_icons/adguardhome.png
+        href: https://adguard.local.priyeshbhawsar.com
+        # ping: 192.168.1.103
+        description: DNS Service
+        # server: servarr
+        # container: bazarr
+        widget:
+            type: adguard
+            url: http://192.168.1.103
+            username: priyesh
+            password: itwasmeDIO!
+    - Ngnix Proxy Manager:
+        icon: /images/catppuccin_icons/nginx-proxy-manager.png
+        href: https://ngnix.local.priyeshbhawsar.com/
+        # ping: apps.priyeshbhawsar.com
+        description: Ngnix Proxy Manager
+        # widget:
+        #     type: npm
+        #     url: https://ngnix.local.priyeshbhawsar.com/
+        #     username: priyeshbhawsar15@gmail.com
+        #     password: itwasmeDIO!
+    - NetAletX:
+        icon: /images/png/netalertx.png
+        href: https://netalertx.local.priyeshbhawsar.com/devices.php
+        description: netalertx
+        widget:
+            type: netalertx
+            url: http://192.168.1.201:20211
+            key: t_opdOzhjz04F1O8YAWw9t # optional, only if password is enabled
+    - MySpeed:
+        icon: /images/png/myspeed.png
+        href: https://myspeed.local.priyeshbhawsar.com/
+        description: speedtest
+        widget:
+            type: myspeed
+            url: http://192.168.1.201:5216
+    - Beszel:
+        icon: /images/catppuccin_icons/docker.png
+        href: https://beszel.local.priyeshbhawsar.com/
+        description: System Monitoring
+        widget:
+            type: beszel
+            url: http://192.168.1.201:8090
+            username: priyeshbhawsar15@gmail.com # email
+            password: itwasmeDIO!
+            systemId: apps # optional
+            version: 2 # optional, default is 1
+- Apps:
+    - Stirling PDF:
+        icon: /images/catppuccin_icons/stirlingpdf.png
+        href: https://pdf.local.priyeshbhawsar.com
+        # ping: stirlingpdf.priyeshbhawsar.com
+        description: PDF manipulation tool
+        server: apps
+        container: pdf-stirling-pdf-1
+    - soulseek:
+        icon: /images/catppuccin_icons/soulseek.png
+        href: https://soulseek.local.priyeshbhawsar.com
+        # ping: soulseek.priyeshbhawsar.com
+        description: P2P file share
+        server: apps
+        container: soulseek
+    - Cockpit:
+        icon: /images/catppuccin_icons/cockpit.png
+        href: https://cockpit.local.priyeshbhawsar.com/
+        description: Cockpit
+        # server: servarr
+        # container: bazarr
+    - Tandoor:
+        icon: /images/catppuccin_icons/tandoor.png
+        href: https://tandoor.local.priyeshbhawsar.com
+        # ping: tandoor.priyeshbhawsar.com
+        description: Recipies
+        server: apps
+        container: tandoor-nginx_recipes-1
+        widget:
+            type: tandoor
+            url: http://192.168.1.201:8888
+            version: 2
+            key: tda_c8b9104f_ddb3_412c_b1a8_008b0f962142
+    # - Hoarder:
+    #     icon: /images/svg/hoarder.svg
+    #     href: https://hoarder.local.priyeshbhawsar.com
+    #     description: Bookmark App
+    #     # ping: hoarder.priyeshbhawsar.com
+    #     server: apps
+    #     container: hoarder-web-1
+    # - Couldflare Zero Trust:
+    #     icon: /images/catppuccin_icons/cloudflare.png
+    #     href: https://one.dash.cloudflare.com/801b1dd2da2537fe8f09341624a8b4d3/networks/tunnels?search=
+    #     description: Cloudflare Zero Trust
+    #     # server: servarr
+    #     # container: bazarr
+    - Hoarder:
+        icon: /images/png/hoarder.png
+        href: https://hoarder.local.priyeshbhawsar.com
+        # ping: soulseek.priyeshbhawsar.com
+        description: links and data
+        server: apps
+        container: hoarder-web-1
+- Media Management:
+    - qBittorrent:
+        icon: /images/catppuccin_icons/qbittorrent.png
+        href: https://qbit.local.priyeshbhawsar.com
+        description: Torrent Client
+        # ping: qbit.priyeshbhawsar.com
+        server: apps
+        container: qbittorrent
+        widget:
+            type: qbittorrent
+            url: http://192.168.1.201:8080
+            username: priyesh
+            password: itwasmeDIO!
+            enableLeechProgress: true # optional, defaults to false
+    - Nzbget:
+        icon: /images/catppuccin_icons/nzbget.png
+        href: https://nzb.local.priyeshbhawsar.com
+        description: NZB Client
+        # ping: nzbget.priyeshbhawsar.com
+        server: apps
+        container: nzbget
+        widget:
+            type: nzbget
+            url: http://192.168.1.201:6789
+            username: priyesh
+            password: itwasmeDIO!
+    - Radarr:
+        icon: /images/catppuccin_icons/radarr.png
+        href: https://radarr.local.priyeshbhawsar.com
+        description: Movies Organizer
+        # ping: radarr.priyeshbhawsar.com
+        server: apps
+        container: radarr
+        widget:
+            type: radarr
+            url: http://192.168.1.201:7878
+            key: 2ddfab1d2c5d45bea534d912eabe5e74
+    - Sonarr:
+        icon: /images/catppuccin_icons/sonarr.png
+        href: https://sonarr.local.priyeshbhawsar.com
+        description: Shows Organizer
+        # ping: sonarr.priyeshbhawsar.com
+        server: apps
+        container: sonarr
+        widget:
+            type: sonarr
+            url: http://192.168.1.201:8989
+            key: e38bcb07c16445b0add427ffa49c5fbf
+- Media Management 2:
+    - Prowlarr:
+        icon: /images/catppuccin_icons/prowlarr.png
+        href: https://prowlarr.local.priyeshbhawsar.com
+        description: Indexer
+        # ping: prowlarr.priyeshbhawsar.com
+        server: apps
+        container: prowlarr
+        widget:
+            type: prowlarr
+            url: http://192.168.1.201:9696
+            key: 08ced5c204304358af65e64ce2328ad5
+    - Lidarr:
+        icon: /images/catppuccin_icons/lidarr.png
+        href: https://lidarr.local.priyeshbhawsar.com
+        description: Music Organizer
+        # ping: lidarr.priyeshbhawsar.com
+        server: apps
+        container: lidarr
+        widget:
+            type: lidarr
+            url: http://192.168.1.201:8686
+            key: a6a75f05e640419ead01ec415c70c1e0
+    - Readarr:
+        icon: /images/catppuccin_icons/readarr.png
+        href: https://readarr.local.priyeshbhawsar.com
+        description: Books Organizer
+        # ping: readarr.priyeshbhawsar.com
+        server: apps
+        container: readarr
+        widget:
+            type: readarr
+            url: http://192.168.1.201:8787
+            key: 17252d9811f44fdb8613ee34834d2df3
+    - Bazarr:
+        icon: /images/catppuccin_icons/bazarr.png
+        href: https://bazarr.local.priyeshbhawsar.com
+        description: Subtitles Downloader
+        # ping: bazarr.priyeshbhawsar.com
+        server: apps
+        container: bazarr
+        widget:
+            type: bazarr
+            url: http://192.168.1.201:6767
+            key: 027d958d17ad43e56c092e9690b37795
+    # - FlareSolverr:
+    #     icon: /images/catppuccin_icons/flaresolverr.png
+    #     # href: https://bazarr.priyeshbhawsar.com
+    #     description: cloudflare solver
+    #     server: apps
+    #     container: flaresolverr
+
+
+
+
+    # - Resources:
+    #     - CPU Usage:
+    #         widget:
+    #             type: glances
+    #             url: http://192.168.1.69:61208
+    #             username: priyesh # optional if auth enabled in Glances
+    #             password: itwasmeDIO! # optional if auth enabled in Glances
+    #             version: 4 # required only if running glances v4 or higher, defaults to 3
+    #             metric: cpu
+    #     - Network Usage:
+    #         widget:
+    #             type: glances
+    #             url: http://192.168.1.69:61208
+    #             username: priyesh # optional if auth enabled in Glances
+    #             password: itwasmeDIO! # optional if auth enabled in Glances
+    #             version: 4 # required only if running glances v4 or higher, defaults to 3
+    #             metric: network:enp3s0
+    #     - Memory Usage:
+    #         widget:
+    #             type: glances
+    #             url: http://192.168.1.69:61208
+    #             username: priyesh # optional if auth enabled in Glances
+    #             password: itwasmeDIO! # optional if auth enabled in Glances
+    #             version: 4 # required only if running glances v4 or higher, defaults to 3
+    #             metric: memory
+    #     - Processes:
+    #         widget:
+    #             type: glances
+    #             url: http://192.168.1.69:61208
+    #             username: priyesh # optional if auth enabled in Glances
+    #             password: itwasmeDIO! # optional if auth enabled in Glances
+    #             version: 4 # required only if running glances v4 or higher, defaults to 3
+    #             metric: process
+    #     - Sensor:
+    #         widget:
+    #             type: glances
+    #             url: http://192.168.1.69:61208
+    #             username: priyesh # optional if auth enabled in Glances
+    #             password: itwasmeDIO! # optional if auth enabled in Glances
+    #             version: 4 # required only if running glances v4 or higher, defaults to 3
+    #             metric: sensor:Package id 0

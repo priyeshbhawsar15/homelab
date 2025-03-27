@@ -1,0 +1,60 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared
+    container_name: cloudflare-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiODAxYjFkZDJkYTI1MzdmZThmMDkzNDE2MjRhOGI0ZDMiLCJ0IjoiNzM3MzVmOTItOGRmZS00YzU4LWI0ODQtYzI2ODhkNTQ1MzRjIiwicyI6Ik5XVXhOekV6WmpjdE9HTTBOUzAwTURJMkxUa3lNell0WXpJM1ltWmpPRFJrTURNNCJ9
+
+  proxy:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    # environment:
+    # Uncomment this if you want to change the location of
+    # the SQLite DB file within the container
+    # DB_SQLITE_FILE: "/data/database.sqlite"
+    # Uncomment this if IPv6 is not enabled on your host
+    # DISABLE_IPV6: 'true'
+    network_mode: host
+    volumes:
+      - /docker/nginx/data:/data
+      - /docker/nginx/letsencrypt:/etc/letsencrypt
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s
+
+  ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    # network_mode: host # This bypasses network isolation and makes IPv6 easier (optional; see below)
+    restart: unless-stopped
+    user: 1000:1000 # Run the updater with specific user and group IDs (in that order).
+    read_only: true # Make the container filesystem read-only (optional but recommended)
+    cap_drop: [all] # Drop all Linux capabilities (optional but recommended)
+    security_opt: [no-new-privileges:true] # Another protection to restrict superuser privileges (optional but recommended)
+    environment:
+      - CLOUDFLARE_API_TOKEN=_oHu2uvVeaWYldu-8l4-oYVXcSSgwXGv7WW8aYn9
+      - DOMAINS=local.priyeshbhawsar.com
+      - PROXIED=true
+      - IP6_PROVIDER=none
+
+  helloworld:
+    image: "karthequian/helloworld:latest"
+    container_name: helloworld
+    restart: unless-stopped
+    ports:
+      - 8888:80/tcp
+
+volumes:
+  data:
+  letsencrypt:

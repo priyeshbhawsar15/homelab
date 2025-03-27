@@ -1,0 +1,41 @@
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
+      - /docker/homarr/configs:/app/data/configs
+      - /docker/homarr/icons:/app/public/icons
+      - /docker/homarr/data:/data
+    # environment:
+    # - DOCKER_HOST=tcp://192.168.1.101:2375
+    # - DOCKER_HOST=tcp://192.168.1.199:2375
+    # - DOCKER_HOST=tcp://192.168.1.200:2375
+    # - DOCKER_HOST=tcp://192.168.1.201:2375
+    # - DOCKER_HOST=tcp://192.168.1.202:2375
+    ports:
+      - 7575:7575
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - /docker/homepage/:/app/config # Make sure your local config directory exists
+      - /docker/homepage/icons:/app/public/images # This is where your images/app-icons would go
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+  homepagelocal:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage.local
+    restart: always
+    ports:
+      - 3002:3000
+    volumes:
+      - /docker/homepage.local/:/app/config # Make sure your local config directory exists
+      - /docker/homepage/icons:/app/public/images # This is where your images/app-icons would go
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+
+volumes:
+  yacht:

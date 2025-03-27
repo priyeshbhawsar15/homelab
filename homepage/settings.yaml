@@ -1,0 +1,24 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+title: Pb's HomeLab
+showStats: false
+headerStyle: clean
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+color: gray
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: false
+  showSearchSuggestions: true
+  hideVisitURL: false
+  provider: google # google, duckduckgo, bing, baidu, brave or custom
+useEqualHeights: true
+fiveColumns: true
+layout:
+  Media:
+  Infra:
+  Apps:
+  Media Management:
+  Media Management 2:

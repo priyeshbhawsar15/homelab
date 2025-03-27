@@ -1,0 +1,37 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+# #teste
+
+- Developer:
+    - Github:
+        - abbr: GH
+          href: https://github.com/
+    - Homepage Docs:
+        - abbr: HD
+          href: https://gethomepage.dev/
+    - Tailscale:
+        - abbr: TS
+          href: https://login.tailscale.com/admin/machines
+    - Cloudflare:
+        - abbr: TS
+          href: https://dash.cloudflare.com/801b1dd2da2537fe8f09341624a8b4d3/priyeshbhawsar.com
+    - Cloudflare Zero Trust:
+        - abbr: TS
+          href: https://one.dash.cloudflare.com/801b1dd2da2537fe8f09341624a8b4d3/networks/tunnels/cfd_tunnel/73735f92-8dfe-4c58-b484-c2688d54534c/edit?tab=publicHostname
+- Social:
+    - Reddit:
+        - abbr: RE
+          href: https://reddit.com/
+    - Gmail:
+        - abbr: GM
+          href: https://mail.google.com/mail/u/0/#inbox
+    - FaceBook Marketplace:
+        - abbr: FBM
+          href: https://www.facebook.com/marketplace/?ref=app_tab
+
+
+- Entertainment:
+    - YouTube:
+        - abbr: YT
+          href: https://youtube.com/

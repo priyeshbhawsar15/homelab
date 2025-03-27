@@ -1,0 +1,90 @@
+services:
+  myspeed:
+    image: germannewsmaker/myspeed
+    container_name: MySpeed
+    environment:
+      - TZ=Asia/Calcutta
+    volumes:
+      - /docker/myspeed:/myspeed/data
+    ports:
+      - 5216:5216
+    restart: unless-stopped
+
+  beszel:
+    image: henrygd/beszel
+    container_name: beszel
+    environment:
+      - TZ=Asia/Calcutta
+    volumes:
+      - /docker/beszel_data:/beszel_data
+    ports:
+      - 8090:8090
+    restart: unless-stopped
+
+  netalertx:
+    image: jokobsk/netalertx:latest
+    container_name: netaletx
+    environment:
+      - TZ=Asia/Calcutta
+      - PORT=20211
+    volumes:
+      - /docker/netaletx/config:/app/config
+      - /docker/netaletx/db:/app/db
+      - type: tmpfs
+        target: /app/api
+    network_mode: host
+    restart: unless-stopped
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    environment:
+      - TZ=Asia/Calcutta
+      - DOCKER_HOST=tcp://192.168.1.199:2375
+      - DOCKER_HOST=tcp://192.168.1.101:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  beszel-agent:
+    image: henrygd/beszel-agent
+    container_name: beszel-agent
+    restart: unless-stopped
+    environment:
+      PORT: 45876
+      KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFbBUrQURQO5VvlrLlkqXKy5skAJIg9AXV7Be6zYaUF4
+      TZ: Asia/Calcutta
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # monitor other disks / partitions by mounting a folder in /extra-filesystems
+      # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
+    network_mode: host
+
+    # speedtest-tracker:
+    #   image: lscr.io/linuxserver/speedtest-tracker:latest
+    #   container_name: speedtest-tracker
+    #   environment:
+    #     - PUID=1000
+    #     - PGID=1000
+    #     - APP_KEY=base64:8Q/pv3BsjFD0b/MVOKN7CbBLSpXozEG7J+2K3/SI0q8=
+    #     - DB_CONNECTION=sqlite
+    #     - APP_DEBUG=true
+    #     - TZ=Asia/Calcutta
+    #   volumes:
+    #     - /docker/speedtest/config:/config
+    #     - /docker/speedtest/custom-ssl-keys:/config/keys
+    #   ports:
+    #     - 8082:80
+    #     - 8443:443
+    # restart: unless-stopped
+
+    # uptime-kuma:
+    #   image: louislam/uptime-kuma:1
+    #   container_name: uptime-kuma
+    #   environment:
+    #     - TZ=Asia/Calcutta
+    #   volumes:
+    #     - /docker/uptime-kuma:/app/data
+    #   ports:
+    #     - 3003:3001
+    #   restart: unless-stopped

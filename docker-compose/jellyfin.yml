@@ -46,12 +46,12 @@ services:
       POSTGRES_PASSWORD: mypassword
       POSTGRES_IP: jellystat-db
       POSTGRES_PORT: 5432
-      JWT_SECRET: "my-secret-jwt-key"
+      JWT_SECRET: 397ce4ab6e324247a8f66de61eb75fde
       TZ: Asia/Calcutta
     volumes:
       - /docker/jellyfin/stats/backup-data:/app/backend/backup-data
     ports:
-      - "3000:3000"
+      - 3001:3000
     depends_on:
       - jellystat-db
     restart: unless-stopped
