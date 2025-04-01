@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       - COUCHDB_USER=priyesh
-      - COUCHDB_PASSWORD=itwasmeDIO!
+      - COUCHDB_PASSWORD={password}
     volumes:
       - /docker/obsidian/couchdb-data:/opt/couchdb/data
       - /docker/obsidian/couchdb-etc:/opt/couchdb/etc/local.d
