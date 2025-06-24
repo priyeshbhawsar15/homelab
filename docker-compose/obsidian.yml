@@ -3,6 +3,8 @@ services:
     container_name: obsidian-couchdb
     image: couchdb
     restart: always
+    env_file:
+      - ./obsidian.env
     environment:
       - COUCHDB_USER=priyesh
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}

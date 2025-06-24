@@ -48,7 +48,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /mob/:/mnt/media/mob/
     env_file:
-      - .env
+      - ./immich-safe.env
     ports:
       - 2283:2283
     depends_on:
@@ -77,7 +77,7 @@ services:
     volumes:
       - model-cache:/cache
     env_file:
-      - .env
+      - ./immich-safe.env
     healthcheck:
       disable: false
     restart: unless-stopped

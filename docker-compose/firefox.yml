@@ -11,6 +11,8 @@ services:
     #           capabilities: [compute,video,graphics,utility]
     security_opt:
       - seccomp:unconfined #optional
+    env_file:
+      - ./firefox.env
     environment:
       - PUID=1000
       - PGID=1000

@@ -27,7 +27,7 @@ services:
     #             - compute
     #             - video
     env_file:
-      - .env
+      - ./immich.env
     ports:
       - 2283:2283
     depends_on:
@@ -56,7 +56,7 @@ services:
     volumes:
       - model-cache:/cache
     env_file:
-      - .env
+      - ./immich.env
     healthcheck:
       disable: false
     restart: unless-stopped
