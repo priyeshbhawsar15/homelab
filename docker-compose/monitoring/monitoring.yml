@@ -39,11 +39,11 @@ services:
     image: containrrr/watchtower
     container_name: watchtower
     environment:
-      - TZ=Asia/Calcutta
-      - DOCKER_HOST=tcp://192.168.1.199:2375
-      - DOCKER_HOST=tcp://192.168.1.101:2375
+      # WATCHTOWER_POLL_INTERVAL: 30
+      WATCHTOWER_CLEANUP: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    # command: --interval 30 bazarr beszel beszel-agent flaresolverr homepage homepage.local immich_machine_learning immich_postgres immich_redis immich_server it-tools jellyseerr jellystat jellystat-db karakeep-chrome-1 karakeep-meilisearch-1 karakeep-web-1 lidarr linkwarden-linkwarden-1 linkwarden-meilisearch-1 linkwarden-postgres-1 MySpeed netaletx nicotine-plus nzbget obsidian-couchdb pdf-stirling-pdf-1 portainer prowlarr qbittorrent radarr readarr sonarr tandoor-db_recipes-1 tandoor-nginx_recipes-1 tandoor-web_recipes-1
     restart: unless-stopped
 
   beszel-agent:

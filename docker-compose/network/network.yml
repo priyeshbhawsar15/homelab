@@ -48,12 +48,12 @@ services:
       - PROXIED=true
       - IP6_PROVIDER=none
 
-  helloworld:
-    image: "karthequian/helloworld:latest"
-    container_name: helloworld
-    restart: unless-stopped
-    ports:
-      - 8888:80/tcp
+  # helloworld:
+  #   image: "karthequian/helloworld:latest"
+  #   container_name: helloworld
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8888:80/tcp
 
 volumes:
   data:

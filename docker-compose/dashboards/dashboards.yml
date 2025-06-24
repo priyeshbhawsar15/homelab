@@ -36,6 +36,3 @@ services:
       - /docker/homepage.local/:/app/config # Make sure your local config directory exists
       - /docker/homepage/icons:/app/public/images # This is where your images/app-icons would go
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
-
-volumes:
-  yacht:

@@ -6,49 +6,28 @@
 # The compose file on main may not be compatible with the latest release.
 #
 services:
-  immich-folder-album-creator:
-    container_name: immich_folder_album_creator
-    image: salvoxia/immich-folder-album-creator:latest
-    restart: unless-stopped
-    environment:
-      ROOT_PATH: /mnt/media/mob/
-      API_URL: http://192.168.1.199:2283/api
-      API_KEY: a0upZL4fX5x1YkUlIyOmsvmgPN1YHCsEeIcKRvQHE4Y
-      CRON_EXPRESSION: "@weekly"
-      RUN_IMMEDIATELY: true
-      ALBUM_LEVELS: 3
-      CHUNK_SIZE: 2000
-      FETCH_CHUNK_SIZE: 5000
-      ALBUM_SEPARATOR: "-"
-      SYNC_MODE: 1
-      FIND_ASSETS_IN_ALBUMS: true
-      SET_ALBUM_THUMBNAIL: random-all
-      
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     # extends:
     #   file: hwaccel.transcoding.yml
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
+    volumes:
+      # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
     # deploy:
     #   resources:
     #     reservations:
     #       devices:
     #         - driver: nvidia
     #           count: 1
-    #           capabilities: 
+    #           capabilities:
     #             - gpu
     #             - compute
     #             - video
-    #             - graphics
-    #             - utility
-    volumes:
-      # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
-      - /mob/:/mnt/media/mob/
     env_file:
-      - stack.env
+      - .env
     ports:
       - 2283:2283
     depends_on:
@@ -77,7 +56,7 @@ services:
     volumes:
       - model-cache:/cache
     env_file:
-      - stack.env
+      - .env
     healthcheck:
       disable: false
     restart: unless-stopped
@@ -96,7 +75,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}
-      POSTGRES_INITDB_ARGS: '--data-checksums'
+      POSTGRES_INITDB_ARGS: "--data-checksums"
     volumes:
       # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data

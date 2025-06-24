@@ -20,7 +20,7 @@ services:
     image: fallenbagel/jellyseerr:latest
     environment:
       - PUID=1000
-      - PGID=1000
+      - PGID=10000
       - TZ=Asia/Calcutta
     volumes:
       - /docker/jellyseerr:/app/config

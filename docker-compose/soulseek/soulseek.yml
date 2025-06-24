@@ -1,0 +1,37 @@
+services:
+  soulseek:
+    image: realies/soulseek
+    container_name: soulseek
+    restart: unless-stopped
+    volumes:
+      - /docker/soulseek/appdata:/data/.SoulseekQt
+      - /data/downloads/soulseek/downloads/:/data/Soulseek Downloads
+      - /docker/soulseek/logs:/data/Soulseek Chat Logs
+      - /data/downloads/soulseek/shared:/data/Soulseek Shared Folder
+    environment:
+      - PGID=10000
+      - PUID=1000
+    ports:
+      - 6080:6080
+      - 61122:61122 # example listening port, check Options -> Login
+      - 61123:61123 # example obfuscated port, check Options -> Login
+
+  nicotine-plus:
+    image: ghcr.io/fletchto99/nicotine-plus-docker:latest
+    container_name: nicotine-plus
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=10000
+      - TZ=Etc/UTC
+      - PASSWORD= #optional
+    volumes:
+      - /docker/nicotine:/config
+      - /data/downloads/soulseek/downloads/:/data/downloads
+      - /data/downloads/soulseek/downloads/incomplete:/data/incomplete_downloads
+      - /data/downloads/soulseek/shared:/data/shared #optional
+    ports:
+      - 6081:6080
+      - 2234-2239:2234-2239
+    restart: unless-stopped
