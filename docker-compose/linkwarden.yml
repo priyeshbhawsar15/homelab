@@ -28,6 +28,6 @@ services:
     image: getmeili/meilisearch:v1.12.8
     restart: always
     env_file:
-      - stack.env
+      - ./linkwarden.env
     volumes:
       - /docker/linkwarden/meili:/meili_data
