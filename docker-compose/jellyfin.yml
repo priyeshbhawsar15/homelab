@@ -18,29 +18,34 @@ services:
   jellyseerr:
     container_name: jellyseerr
     image: fallenbagel/jellyseerr:latest
+    restart: unless-stopped
+    ports:
+      - 5055:5055
+    volumes:
+      - /docker/jellyseerr:/app/config
     environment:
       - PUID=1000
       - PGID=10000
       - TZ=Asia/Calcutta
-    volumes:
-      - /docker/jellyseerr:/app/config
-    ports:
-      - 5055:5055
-    restart: unless-stopped
 
   jellystat-db:
-    image: postgres:15.2
     container_name: jellystat-db
+    image: postgres:15.2
+    restart: unless-stopped
+    volumes:
+      - /docker/jellyfin/stats/postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mypassword
-    volumes:
-      - /docker/jellyfin/stats/postgres:/var/lib/postgresql/data
-    restart: unless-stopped
 
   jellystat:
-    image: cyfershepard/jellystat:latest
     container_name: jellystat
+    image: cyfershepard/jellystat:latest
+    restart: unless-stopped
+    ports:
+      - 3001:3000
+    volumes:
+      - /docker/jellyfin/stats/backup-data:/app/backend/backup-data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mypassword
@@ -48,10 +53,5 @@ services:
       POSTGRES_PORT: 5432
       JWT_SECRET: 397ce4ab6e324247a8f66de61eb75fde
       TZ: Asia/Calcutta
-    volumes:
-      - /docker/jellyfin/stats/backup-data:/app/backend/backup-data
-    ports:
-      - 3001:3000
     depends_on:
       - jellystat-db
-    restart: unless-stopped

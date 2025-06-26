@@ -1,5 +1,6 @@
 services:
   db_recipes:
+    container_name: tandoor_db_recipes
     restart: unless-stopped
     image: postgres:16-alpine
     volumes:
@@ -8,8 +9,9 @@ services:
       - stack.env
 
   web_recipes:
-    restart: always
+    container_name: tandoor_web_recipes
     image: vabene1111/recipes
+    restart: unless-stopped
     env_file:
       - stack.env
     volumes:
@@ -21,6 +23,7 @@ services:
       - db_recipes
 
   nginx_recipes:
+    container_name: tandoor_nginx_recipes
     image: nginx:mainline-alpine
     restart: always
     ports:

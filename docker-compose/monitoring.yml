@@ -1,68 +1,75 @@
 services:
-  myspeed:
-    image: germannewsmaker/myspeed
-    container_name: MySpeed
-    environment:
-      - TZ=Asia/Calcutta
-    volumes:
-      - /docker/myspeed:/myspeed/data
-    ports:
-      - 5216:5216
-    restart: unless-stopped
+  # myspeed:
+  #   image: germannewsmaker/myspeed
+  #   container_name: MySpeed
+  #   restart: unless-stopped
+  #   ports:
+  #     - 5216:5216
+  #   volumes:
+  #     - /docker/myspeed:/myspeed/data
+  #   environment:
+  #     - TZ=Asia/Calcutta
 
   beszel:
     image: henrygd/beszel
     container_name: beszel
-    environment:
-      - TZ=Asia/Calcutta
-    volumes:
-      - /docker/beszel_data:/beszel_data
+    restart: unless-stopped
     ports:
       - 8090:8090
-    restart: unless-stopped
+    volumes:
+      - /docker/beszel_data:/beszel_data
+    environment:
+      - TZ=Asia/Calcutta
 
   netalertx:
     image: jokobsk/netalertx:latest
     container_name: netaletx
-    environment:
-      - TZ=Asia/Calcutta
-      - PORT=20211
+    restart: unless-stopped
+    network_mode: host
     volumes:
       - /docker/netaletx/config:/app/config
       - /docker/netaletx/db:/app/db
       - type: tmpfs
         target: /app/api
-    network_mode: host
-    restart: unless-stopped
+    environment:
+      - TZ=Asia/Calcutta
+      - PORT=20211
 
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       # WATCHTOWER_POLL_INTERVAL: 30
       WATCHTOWER_CLEANUP: true
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     # command: --interval 30 bazarr beszel beszel-agent flaresolverr homepage homepage.local immich_machine_learning immich_postgres immich_redis immich_server it-tools jellyseerr jellystat jellystat-db karakeep-chrome-1 karakeep-meilisearch-1 karakeep-web-1 lidarr linkwarden-linkwarden-1 linkwarden-meilisearch-1 linkwarden-postgres-1 MySpeed netaletx nicotine-plus nzbget obsidian-couchdb pdf-stirling-pdf-1 portainer prowlarr qbittorrent radarr readarr sonarr tandoor-db_recipes-1 tandoor-nginx_recipes-1 tandoor-web_recipes-1
-    restart: unless-stopped
 
   beszel-agent:
     image: henrygd/beszel-agent
     container_name: beszel-agent
     restart: unless-stopped
-    environment:
-      PORT: 45876
-      KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFbBUrQURQO5VvlrLlkqXKy5skAJIg9AXV7Be6zYaUF4
-      TZ: Asia/Calcutta
+    network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
       # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
-    network_mode: host
+    environment:
+      PORT: 45876
+      KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFbBUrQURQO5VvlrLlkqXKy5skAJIg9AXV7Be6zYaUF4
+      TZ: Asia/Calcutta
 
     # speedtest-tracker:
     #   image: lscr.io/linuxserver/speedtest-tracker:latest
     #   container_name: speedtest-tracker
+    #   restart: unless-stopped
+    #   ports:
+    #     - 8082:80
+    #     - 8443:443
+    #   volumes:
+    #     - /docker/speedtest/config:/config
+    #     - /docker/speedtest/custom-ssl-keys:/config/keys
     #   environment:
     #     - PUID=1000
     #     - PGID=1000
@@ -70,21 +77,14 @@ services:
     #     - DB_CONNECTION=sqlite
     #     - APP_DEBUG=true
     #     - TZ=Asia/Calcutta
-    #   volumes:
-    #     - /docker/speedtest/config:/config
-    #     - /docker/speedtest/custom-ssl-keys:/config/keys
-    #   ports:
-    #     - 8082:80
-    #     - 8443:443
-    # restart: unless-stopped
 
     # uptime-kuma:
     #   image: louislam/uptime-kuma:1
     #   container_name: uptime-kuma
-    #   environment:
-    #     - TZ=Asia/Calcutta
-    #   volumes:
-    #     - /docker/uptime-kuma:/app/data
+    #   restart: unless-stopped
     #   ports:
     #     - 3003:3001
-    #   restart: unless-stopped
+    #   volumes:
+    #     - /docker/uptime-kuma:/app/data
+    #   environment:
+    #     - TZ=Asia/Calcutta
