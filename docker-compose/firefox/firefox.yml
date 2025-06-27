@@ -3,8 +3,6 @@ services:
     container_name: firefox
     image: lscr.io/linuxserver/firefox:latest
     restart: unless-stopped
-    env_file:
-      - ./firefox.env
     ports:
       - 3000:3000
       - 3001:3001

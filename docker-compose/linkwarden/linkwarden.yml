@@ -3,16 +3,12 @@ services:
     container_name: linkwarden-postgres
     image: postgres:16-alpine
     restart: unless-stopped
-    env_file:
-      - ./linkwarden.env
     volumes:
       - /docker/linkwarden/postgres:/var/lib/postgresql/data
   linkwarden:
     container_name: linkwarden-app
     image: ghcr.io/linkwarden/linkwarden:latest # comment to build from source
     restart: unless-stopped
-    env_file:
-      - ./linkwarden.env
     environment:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
     # build: . # uncomment to build from source
@@ -27,7 +23,5 @@ services:
     container_name: linkwarden-meilisearch
     image: getmeili/meilisearch:v1.12.8
     restart: unless-stopped
-    env_file:
-      - ./linkwarden.env
     volumes:
       - /docker/linkwarden/meili:/meili_data

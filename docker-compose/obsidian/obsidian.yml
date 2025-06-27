@@ -3,8 +3,6 @@ services:
     container_name: obsidian-couchdb
     image: couchdb
     restart: unless-stopped
-    env_file:
-      - ./obsidian.env
     ports:
       - 5984:5984
     volumes:
