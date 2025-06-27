@@ -1,5 +1,6 @@
 #!/bin/bash
 docker compose \
+  --env-file .env \
   -f immich/immich.yml \
   -f jellyfin.yml \
   -f karakeep/karakeep.yml \
