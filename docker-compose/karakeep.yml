@@ -7,7 +7,8 @@ services:
       - /docker/karakeep:/data
     ports:
       - 3003:3000
-    env_file: karakeep.env
+    env_file:
+      - ./karakeep.env
     environment:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
@@ -31,7 +32,8 @@ services:
     container_name: karakeep-meilisearch
     image: getmeili/meilisearch:v1.13.3
     restart: unless-stopped
-    env_file: karakeep.env
+    env_file:
+      - ./karakeep.env
     volumes:
       - /docker/karakeep/meilisearch:/meili_data
     environment:
