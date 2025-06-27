@@ -11,4 +11,4 @@ docker compose \
   -f soulseek.yml \
   -f tandoor/tandoor.yml \
   -f tools.yml \
-  up -d
+  down
