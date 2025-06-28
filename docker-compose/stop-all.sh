@@ -5,7 +5,7 @@ docker compose \
   -f karakeep.yml \
   -f linkwarden.yml \
   -f monitoring.yml \
-  -f obsidian/obsidian.yml \
+  -f obsidian.yml \
   -f pdf.yml \
   -f servarr.yml \
   -f soulseek.yml \

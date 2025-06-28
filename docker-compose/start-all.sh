@@ -4,7 +4,7 @@ docker compose \
   -f jellyfin.yml \
   -f karakeep.yml \
   -f monitoring.yml \
-  -f obsidian/obsidian.yml \
+  -f obsidian.yml \
   -f pdf.yml \
   -f servarr.yml \
   -f soulseek.yml \
