@@ -11,7 +11,6 @@ services:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
       OPENAI_API_KEY: ${OPEN_API_KEY}
-
       # You almost never want to change the value of the DATA_DIR variable.
       # If you want to mount a custom directory, change the volume mapping above instead.
       DATA_DIR: /data # DON'T CHANGE THIS
@@ -34,3 +33,6 @@ services:
       - /docker/karakeep/meilisearch:/meili_data
     environment:
       MEILI_NO_ANALYTICS: "true"
+volumes:
+  # meilisearch:
+  data:
